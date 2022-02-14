@@ -10,7 +10,8 @@ namespace BusinessLogic.Data.Configuration
         {
             builder.Property(p => p.Nombre)
                 .IsRequired()
-                .HasMaxLength(250);
+                .HasMaxLength(250)
+                .HasColumnType("varchar");
 
             builder.Property(p => p.Descripcion)
                 .IsRequired()

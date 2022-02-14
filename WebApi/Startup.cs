@@ -26,12 +26,16 @@ namespace WebApi
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services) // <------- Este método se modificó
         {
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
             services.AddDbContext<MarketDbContext>(opt => {
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+
             services.AddTransient<IProductoRepository, ProductoRepository>();
+
             services.AddControllers();
         }
 
